@@ -1,0 +1,14 @@
+#dirs:
+**/__pycache__/
+.venv
+data/*
+
+#files
+**/*.DS_Store
+**/._*
+**/.~lock.*
+**/.ipynb_checkpoints/
+.env.local
+.env
+pyvenv.cfg
+.idea
