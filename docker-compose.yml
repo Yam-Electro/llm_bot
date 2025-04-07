@@ -20,7 +20,7 @@ services:
       - .env
     environment:
       - CUDA_DEVICE_ORDER=PCI_BUS_ID
-      - CUDA_VISIBLE_DEVICES=1 # Используем только GPU 1 (RTX 4070 Ti)
+      - CUDA_VISIBLE_DEVICES=0,1 # Используем только GPU 1 (RTX 4070 Ti)
       - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True  # Оптимизация памяти
     ports:
       - "8844:8844"  # Для отладки
@@ -31,5 +31,5 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ['1']  # Явно указываем GPU 1
+              count: all
               capabilities: [gpu]

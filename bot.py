@@ -4,7 +4,7 @@ import os
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from aiogram.enums import ParseMode, UpdateType
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message
 from aiogram.fsm.storage.memory import MemoryStorage
 import logging
 import functions as f
@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-BOT_NAME = "@whisper_fliutch_bot"
+BOT_NAME = "@pobazekat_bot"
 LLM_API_URL = "http://llm_back:8844/generate"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
@@ -27,7 +27,8 @@ dp = Dispatcher(storage=MemoryStorage())
 async def handle_text(message: Message):
     reply_text, error = await f.handle_text_message(message, BOT_NAME, LLM_API_URL)
     if error:
-        await message.reply(f"Произошла ошибка: {error}", parse_mode=ParseMode.HTML)
+        clean_error = str(error).split(':')[0]  # Берем только начало ошибки
+        await message.reply(f"Произошла ошибка: {clean_error}", parse_mode=ParseMode.HTML)
     else:
         await message.reply(reply_text, parse_mode=ParseMode.HTML)
 

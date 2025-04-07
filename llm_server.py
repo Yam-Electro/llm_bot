@@ -8,13 +8,21 @@ app = FastAPI()
 # Явно указываем устройство CUDA:0 (GPU 1 внутри контейнера)
 torch.cuda.set_device(0)
 
+# llm = LLM(
+#     model="Qwen/Qwen2.5-7B-Instruct-AWQ",
+#     tensor_parallel_size=1,
+#     gpu_memory_utilization=0.9,
+#     max_model_len=2048,
+#     trust_remote_code=True,
+#     quantization="awq"
+# )
 llm = LLM(
-    model="Qwen/Qwen2.5-7B-Instruct",
-    tensor_parallel_size=1,  # Одна GPU
-    gpu_memory_utilization=0.9,
+    model="solidrust/Mistral-7B-Instruct-v0.3-AWQ",
+    tensor_parallel_size=1,
+    gpu_memory_utilization=0.7,
+    quantization="awq",  # AWQ поддерживается этой моделью
     max_model_len=2048,
-    trust_remote_code=True,
-    quantization="awq"  # Квантизация для уменьшения памяти
+    trust_remote_code=True
 )
 
 class GenerateRequest(BaseModel):
