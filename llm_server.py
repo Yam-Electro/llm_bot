@@ -6,16 +6,8 @@ import torch
 app = FastAPI()
 
 # Явно указываем устройство CUDA:0 (GPU 1 внутри контейнера)
-torch.cuda.set_device(0)
+torch.cuda.set_device(1)
 
-# llm = LLM(
-#     model="Qwen/Qwen2.5-7B-Instruct-AWQ",
-#     tensor_parallel_size=1,
-#     gpu_memory_utilization=0.9,
-#     max_model_len=2048,
-#     trust_remote_code=True,
-#     quantization="awq"
-# )
 llm = LLM(
     model="solidrust/Mistral-7B-Instruct-v0.3-AWQ",
     tensor_parallel_size=1,
