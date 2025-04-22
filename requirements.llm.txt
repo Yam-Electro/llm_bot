@@ -1,5 +1,7 @@
-vllm==0.5.5
-torch==2.4.0
+# vllm==0.5.5
+vllm==0.8.3
+# torch==2.4.0
+torch==2.6.0
 transformers>=4.40.0
 fastapi==0.115.0
 uvicorn==0.30.6
