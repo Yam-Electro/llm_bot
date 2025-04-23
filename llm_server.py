@@ -13,7 +13,7 @@ llm = LLM(
     tensor_parallel_size=1,
     gpu_memory_utilization=0.7,
     quantization="awq",  # AWQ поддерживается этой моделью
-    max_model_len=2048,
+    max_model_len=8192, #2048,
     trust_remote_code=True
 )
 
